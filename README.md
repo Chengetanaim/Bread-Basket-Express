@@ -1,6 +1,6 @@
 # Bread Basket Express
 
-Bread Basket Express is a e-commerce website that sells bakery products written in Python, Django.<br>
+Bread Basket Express is a e-commerce website that sells bakery products, written in Python, Django.<br>
 It caters for user account creation, deletion and login.<br>
 Users are able to view products and order the products they want, as well as specify the order quantity.
 
