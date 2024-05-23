@@ -1,0 +1,14 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+    <h3>Notices</h3>
+    {% for notice in notices %}
+        <ul> 
+            <h4>{{ notice.title }}</h4>
+            <p>{{ notice.description }}</p>
+            <p><img src="{{notice.image.url}}" alt=""></p>
+        </ul>
+    {% empty %}
+        <li>No notices have been added yet.</li>
+    {% endfor %}
+{% endblock content %}

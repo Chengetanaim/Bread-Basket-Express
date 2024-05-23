@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Store</title>
+    <link rel="stylesheet" href="design.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Product Store</h1>
+    </header>
+    <main>
+        <section class="products">
+            <h2>Our Products</h2>
+            <div class="product" id="product1">
+                <h3>Product 1</h3>
+                <p class="price">$19.99</p>
+                <button onclick="orderProduct('Product 1', 19.99)">Order Now</button>
+            </div>
+            <div class="product" id="product2">
+                <h3>Product 2</h3>
+                <p class="price">$29.99</p>
+                <button onclick="orderProduct('Product 2', 29.99)">Order Now</button>
+            </div>
+            <!-- Add more products as needed -->
+        </section>
+        <section class="order-form" id="order-form">
+            <h2>Order Form</h2>
+            <form id="form">
+                <label for="product">Product:</label>
+                <input type="text" id="product" name="product" readonly>
+                
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price" readonly>
+                
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <button type="submit">Submit Order</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Product Store. All rights reserved.</p>
+    </footer>
+    <script src="design.js"></script>
+</body>
+</html>

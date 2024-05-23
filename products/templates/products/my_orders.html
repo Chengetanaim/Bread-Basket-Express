@@ -1,0 +1,15 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+    <h3>My Orders</h3>
+    {% for order in my_orders %}
+        <p>Product: {{ order.product.name }}</p>
+        <p>Date Added: {{order.ordered_at}}</p>
+        <p>Quantity: {{order.quantity}}</p>
+        <p>Price: {{order.product.price}}</p>
+        <p>Order Price: {{ order.order_price }}</p>
+        <hr>
+    {% empty %}
+        <li>You haven't ordered any items yet.</li>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+    <p><a href="{% url 'products:product' product.id %}">{{ product.name }}</a></p>
+    <p><img src="{{ product.image.url }}" alt=""></p>
+    Total Price: {{ product.price }}
+    <form action="{% url 'products:new_order' product.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Add order</button>
+    </form>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+    <h2>Here are the products that we offer:</h2>
+    {% for product in products %}
+        <p><b><a href="{% url 'products:product' product.id %}">{{ product.name }}</a></b></p>
+        <p>{{ product.description }}</p>
+        <p><img src="{{ product.image.url }}" alt=""></p>
+        <p>${{ product.price }}</p>
+        <button><a href="{% url 'products:new_order' product.id %}">Order Now</a></button>
+        <hr>
+    {% empty %}
+        <li>No products have been added yet.</li>
+    {% endfor %}
+{% endblock content %}
