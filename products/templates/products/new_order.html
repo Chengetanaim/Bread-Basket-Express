@@ -1,12 +1,15 @@
 {% extends "products/base.html" %}
+{% load static %}
 
 {% block content %}
     <p><a href="{% url 'products:product' product.id %}">{{ product.name }}</a></p>
     <p><img src="{{ product.image.url }}" alt=""></p>
-    Total Price: {{ product.price }}
+    <p>Total Price: $<b class="total_price">{{product.price}}</b></p>
     <form action="{% url 'products:new_order' product.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button name="submit">Add order</button>
     </form>
+
+    <script src="{% static '/js/calculate_total_price.js' %}"></script>
 {% endblock content %}

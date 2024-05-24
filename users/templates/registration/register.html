@@ -1,4 +1,5 @@
 {% extends 'products/base.html' %}
+{% load static %}
 
 {%  block content %}
     <form action="{% url 'users:register' %}" method="post">
@@ -7,4 +8,5 @@
         <button name="submit">Register</button>
         <input type="hidden" name="next" value="{% url 'products:index' %}">
     </form>
+    <script src="{% static 'js/errors.js' %}"></script>
 {%  endblock content %}

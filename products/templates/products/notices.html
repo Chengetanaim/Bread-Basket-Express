@@ -1,14 +1,55 @@
 {% extends 'products/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h3>Notices</h3>
-    {% for notice in notices %}
-        <ul> 
-            <h4>{{ notice.title }}</h4>
-            <p>{{ notice.description }}</p>
-            <p><img src="{{notice.image.url}}" alt=""></p>
-        </ul>
-    {% empty %}
-        <li>No notices have been added yet.</li>
-    {% endfor %}
+     <!-- Shop Detail Start -->
+     <div class="container-fluid pb-5">
+        
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="bg-light p-30">
+                    
+                    <div class="tab-content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="mb-4">Notices</h4>
+                                    {% for notice in notices %}
+                                    <div class="media mb-4">
+                                        <img src="{{notice.image.url}}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                        <div class="media-body">
+                                            <h6>{{notice.title}}</h6>
+                                            
+                                            <p>{{notice.description}}.</p>
+                                        </div>
+                                    </div>
+                                    {%empty%}
+                                        <p>No notices have been added yet.</p>
+                                    {%endfor%}
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shop Detail End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static '/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static '/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static '/mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static '/mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static '/js/main.js' %}"></script>
 {% endblock content %}

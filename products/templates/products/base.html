@@ -1,16 +1,76 @@
-<p>
-    <a href="{% url 'products:index' %}">Home</a> |
-    <a href="{% url 'products:products' %}">Products</a> | 
-    <a href="{% url 'products:notices' %}">Notices</a> | 
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'products:my_orders' %}">My Orders</a> |
-        <a href="{% url 'products:download_orders' %}">Download Orders</a> |
-        <a href="{% url 'users:logout' %}">Logout, {{ request.user.username }}</a>
-    {% else %}
-        <a href="{% url 'users:register' %}">Register</a> |
-        <a href="{% url 'users:login' %}">Log in</a>
-    {% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}{%endblock title%}</title>
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
-</p>
-{% block content %}
-{% endblock content %}
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static '/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+        <!-- Navbar Start -->
+        <div class="container-fluid bg-dark mb-30">
+            <div class="row px-xl-5">
+                <div class="col-lg-3 d-none d-lg-block">
+                    <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="" style="height: 65px; padding: 0 30px;">
+                        <h6 class="text-dark m-0">Home</h6>
+                        
+                    </a>
+                    
+                </div>
+                <div class="col-lg-9">
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                        <a href="" class="text-decoration-none d-block d-lg-none">
+                            <span class="h1 text-uppercase text-dark bg-light px-2">Home</span>
+                        </a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto py-0">
+                                <a href="{% url 'products:index' %}" class="nav-item nav-link">Home</a>
+                                <a href="{% url 'products:products' %}" class="nav-item nav-link ">Products</a>
+                                <a href="{% url 'products:notices' %}" class="nav-item nav-link ">Notices</a>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'products:my_orders' %}" class="nav-item nav-link ">My Orders</a>
+                                {%if request.user.is_staff %}
+                                    <a href="{% url 'products:download_orders' %}" class="nav-item nav-link ">Download Orders</a>
+                                {%endif %}
+                                {% else %}
+                                    <a href="{% url 'users:login' %}" class="nav-item nav-link ">Login</a>
+                                    <a href="{% url 'users:register' %}" class="nav-item nav-link ">Register</a>
+                                    
+                                {% endif %}
+                               
+                            </div>
+                            
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar End -->
+
+        {% block content %}
+        {% endblock content %}
+    
+</body>
+</html>
