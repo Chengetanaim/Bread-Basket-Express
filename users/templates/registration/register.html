@@ -2,11 +2,76 @@
 {% load static %}
 
 {%  block content %}
-    <form action="{% url 'users:register' %}" method="post">
+    <!-- <form action="{% url 'users:register' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button name="submit">Register</button>
         <input type="hidden" name="next" value="{% url 'products:index' %}">
-    </form>
+    </form> -->
+        <!-- Breadcrumb Start -->
+        <div class="container-fluid">
+            <div class="row px-xl-5">
+                <div class="col-12">
+                    <nav class="breadcrumb bg-light mb-30">
+                        <a class="breadcrumb-item text-dark" href="#">Home</a>
+                        <span class="breadcrumb-item active">Register</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+    
+    
+        <!-- Contact Start -->
+        <form action="{% url 'users:register' %}" method="post">
+            {% csrf_token %}
+            <div class="container-fluid">
+                <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Sign Up</span></h2>
+                <div class="row px-xl-5">
+                    <div class="col-lg-7 mb-5">
+                        <div class="contact-form bg-light p-30">
+                            <div id="success"></div>
+                            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                                <div class="control-group">
+                                    {{form.username}}   
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group">
+                                    {{form.password1}}
+                                    <p class="help-block text-danger"></p>
+                                    
+                                </div>
+                                <div class="control-group">
+                                    {{form.password2}}
+                                    <p class="help-block text-danger"></p>
+                                    
+                                </div>
+                                <div class="control-group">
+                                    {% if form.errors %}
+                                    <ul>
+                                        {{form.errors}}
+                                    </ul>
+                                    {% endif %}
+                                    
+                                </div>
+                               
+                                <div>
+                                    <button class="btn btn-primary py-2 px-4" name="submit" id="sendMessageButton">Register</button>
+                                    <!-- <input type="hidden" name="next" value="{% url 'products:index' %}"> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+    
+    
+                    <div class="col-lg-5 mb-5">
+                            <div class="">
+                                <img class="w-100 h-100" src="{% static '/img/logo.JPG' %}" alt="Image">
+                            </div>
+                        
+                    </div>
+                    
+                </div>
+        </form>
     <script src="{% static 'js/errors.js' %}"></script>
 {%  endblock content %}

@@ -1,0 +1,58 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block content %}
+    
+         <!-- Shop Detail Start -->
+         <div class="container-fluid pb-5">
+        
+            <div class="row px-xl-5">
+                <div class="col">
+                    <div class="bg-light p-30">
+                        
+                        <div class="tab-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="mb-4">Feedback | <a href="{% url 'products:new_feedback' %}">Add feedback</a></h4>
+                                        {% for feedback in feedbacks %}
+                                        <div class="media mb-4">
+                                            <img src="{% static '/img/logo.JPG' %}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                            <div class="media-body">
+                                                <h6>{{feedback.user.username}}</h6>
+                                             
+                                                
+                                                <p>{{feedback.text}}</p>
+                                                <p>{{feedback.date_added}}</p>
+                                            </div>
+                                        </div>
+                                        {%empty%}
+                                            <p>No notices have been added yet.</p>
+                                        {%endfor%}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Detail End -->
+    
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    
+    
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static '/lib/easing/easing.min.js' %}"></script>
+        <script src="{% static '/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    
+        <!-- Contact Javascript File -->
+        <script src="{% static '/mail/jqBootstrapValidation.min.js' %}"></script>
+        <script src="{% static '/mail/contact.js' %}"></script>
+    
+        <!-- Template Javascript -->
+        <script src="{% static '/js/main.js' %}"></script>
+{% endblock content %}

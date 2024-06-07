@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Product, Order, Notice
-from .forms import OrderForm
+from .models import Product, Order, Notice, Feedback
+from .forms import OrderForm, FeedbackForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 import csv
@@ -78,3 +78,23 @@ def download_orders(request):
         writer.writerow(data_row)
     
     return response
+
+@login_required
+def feedbacks(request):
+    feedbacks = Feedback.objects.filter(user=request.user).order_by('-date_added')
+    context = {"feedbacks": feedbacks}
+    return render(request, 'products/feedbacks.html', context)
+
+@login_required
+def new_feedback(request):
+    if request.method != 'POST':
+        form = FeedbackForm()
+    else:
+        form = FeedbackForm(data=request.POST)
+        if form.is_valid:
+            new_feedback = form.save(commit=False)
+            new_feedback.user = request.user
+            new_feedback.save()
+            return redirect('products:feedbacks')
+    context = {'form': form}
+    return render(request, 'products/new_feedback.html', context)

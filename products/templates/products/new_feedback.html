@@ -1,14 +1,19 @@
-{% extends "products/base.html" %}
+{% extends 'products/base.html' %}
 {% load static %}
 
 {% block content %}
+    <!-- <form action="{% url 'products:new_feedback' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button name="submit">Add feedback</button>
+    </form> -->
     <!-- Breadcrumb Start -->
-      <div class="container-fluid">
+    <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
                     <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <span class="breadcrumb-item active">New Order</span>
+                    <span class="breadcrumb-item active">New Feedback</span>
                 </nav>
             </div>
         </div>
@@ -17,20 +22,20 @@
 
 
     <!-- Contact Start -->
-    <form action="{% url 'products:new_order' product.id %}" method="post">
+    <form action="{% url 'products:new_feedback' %}" method="post">
         {% csrf_token %}
         <div class="container-fluid">
-            <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">{{ product.name }}</span></h2>
+            <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Add Feedback</span></h2>
             <div class="row px-xl-5">
                 <div class="col-lg-7 mb-5">
                     <div class="contact-form bg-light p-30">
                         <div id="success"></div>
                         <form name="sentMessage" id="contactForm" novalidate="novalidate">
                            
-                            {{form.quantity}}
+                            {{form.text}}
                             
                             <div>
-                                <button class="btn btn-primary py-2 px-4" name="submit" id="sendMessageButton">Add Order</button>
+                                <button class="btn btn-primary py-2 px-4" name="submit" id="sendMessageButton">Add Feedback</button>
                             </div>
                         </form>
                     </div>
@@ -43,7 +48,7 @@
                             
                         </div> -->
                         <div class="">
-                            <img class="w-100 h-100" src="{{product.image.url}}" alt="Image">
+                            <img class="w-100 h-100" src="{% static '/img/logo.JPG' %}" alt="Image">
                         </div>
                     
                 </div>
@@ -53,5 +58,4 @@
     </div>
     <!-- Contact End -->
 
-    <script src="{% static '/js/calculate_total_price.js' %}"></script>
 {% endblock content %}
